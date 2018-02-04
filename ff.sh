@@ -28,8 +28,8 @@ echo "mp4转换完成，存储在$httpdir文件夹"
 
 sleep 5
 echo "正在转换flv文件(用于rtmp播放)..."
-ffmpeg -i $1 -c:v libx264 -f flv $rtmpdir/$newfilename.flv
-echo "mp4转换完成，存储在$rtmpdir文件夹"
+ffmpeg -i $1 -f flv $rtmpdir/$newfilename.flv
+echo "flv转换完成，存储在$rtmpdir文件夹"
 
 sleep 5
 echo "正在转换hls文件(用于切片播放)..."
