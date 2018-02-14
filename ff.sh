@@ -35,26 +35,3 @@ sleep 5
 echo "正在转换hls文件(用于切片播放)..."
 ffmpeg -i $1 -c:v libx264 -map 0 -f ssegment -segment_format mpegts -segment_list $hlsdir/playlist.m3u8 -segment_time 10 $hlsdir/out%03d.ts
 echo "mp4转换完成，存储在$hlsdir文件夹"
-
-echo "是否自动复制到网站目录？[y/n]"
-read ans
-if [[ $ans -ne "y" ]]; then
-    echo "执行结束！"
-    exit 1;
-fi
-
-cp -r $httpdir/* ~/http/
-cp -r $rtmpdir/* ~/rtmp/
-cp -r $basedir/hls/* ~/hls
-
-echo "复制成功！"
-
-echo "视频播放链接为:"
-echo "------http------"
-echo "http://107.167.12.38/http/$newfilename.mp4"
-
-echo "------rtmp------"
-echo "http://107.167.12.38/rtmp/$newfilename.flv"
-
-echo "------hls--------"
-echo "http://107.167.12.38/hls/$newfilename/playlist.m3u8"
